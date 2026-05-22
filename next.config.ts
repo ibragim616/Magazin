@@ -7,10 +7,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    outputFileTracingIncludes: {
-      '/*': ['./dev.db'],
-    },
+  outputFileTracingIncludes: {
+    '/*': ['./dev.db'],
   },
 };
 
