@@ -14,7 +14,7 @@ export default async function AdminDashboardPage() {
     where: { status: { not: 'CANCELLED' } },
   });
 
-  const totalRevenue = activeOrders.reduce((sum, o) => sum + o.totalAmount, 0);
+  const totalRevenue = activeOrders.reduce((sum: number, o: any) => sum + o.totalAmount, 0);
 
   const recentOrders = await db.order.findMany({
     take: 5,
