@@ -138,7 +138,7 @@ export default async function AdminDashboardPage() {
             </thead>
             <tbody className="divide-y divide-gray-50 dark:divide-slate-800/50">
               {recentOrders.length > 0 ? (
-                recentOrders.map((order) => (
+                recentOrders.map((order: any) => (
                   <tr key={order.id} className="hover:bg-gray-50/50 dark:hover:bg-slate-900/20 transition-colors text-gray-700 dark:text-gray-300">
                     <td className="py-4 pl-4 font-mono font-bold">#{order.id.slice(-6).toUpperCase()}</td>
                     <td className="py-4 font-bold text-gray-900 dark:text-white">{order.customerName}</td>
