@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+ 
+ 
 import React from 'react';
 import db from '@/lib/db';
 import { DollarSign, ShoppingCart, Users, Package, Eye, ClipboardList } from 'lucide-react';

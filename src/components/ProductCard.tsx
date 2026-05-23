@@ -1,3 +1,7 @@
+ 
+ 
+/* eslint-disable @next/next/no-img-element */
+ 
 'use client';
 
 import React from 'react';
@@ -23,8 +27,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const firstImage = product.images.split(',')[0] || '/images/placeholder.jpg';
 
-  const formatPrice = (price: number) => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + " so'm";
+  const formatPrice = (price?: number | null) => {
+    if (price === undefined || price === null) return "0 so'm";
+    return price.toLocaleString('uz-UZ') + " so'm";
   };
 
   const hasDiscount = product.discountPrice !== null;

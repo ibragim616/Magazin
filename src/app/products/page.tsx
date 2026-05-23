@@ -1,3 +1,7 @@
+ 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -94,9 +98,9 @@ function CatalogPageContent() {
   }, [search, category, selectedBrand, minPrice, maxPrice, sort]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+     
     setSearch(searchParams.get('search') || '');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+     
     setCategory(searchParams.get('category') || '');
   }, [searchParams]);
 

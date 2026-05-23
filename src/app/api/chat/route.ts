@@ -1,3 +1,7 @@
+ 
+ 
+ 
+ 
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 
@@ -12,18 +16,18 @@ export async function POST(req: Request) {
     const cartItems = data?.cartItems || [];
 
     const cartContext = cartItems.length > 0
-      ? `Hozirda foydalanuvchining savatchasida quyidagi mahsulotlar bor:\n${cartItems.map((item: any) => `- ${item.name} (${item.quantity} ta) - Narxi: ${item.price} so'm`).join('\n')}\nFoydalanuvchi asosan shu mahsulotlar bo'yicha savol bersa, ularga to'liq va foydali ma'lumotlarni taqdim eting.`
-      : `Hozirda foydalanuvchi savatchasida hech qanday mahsulot yo'q.`;
+    ? `Hozirda foydalanuvchining savatchasida quyidagi mahsulotlar bor:\n${cartItems.map((item: { name: string; quantity: number; price: number }) => `- ${item.name} (${item.quantity} ta) - Narxi: ${item.price} so'm`).join('\n')}\nFoydalanuvchi asosan shu mahsulotlar bo'yicha savol bersa, ularga to'liq va foydali ma'lumotlarni taqdim eting.`
+    : `Hozirda foydalanuvchi savatchasida hech qanday mahsulot yo'q.`;
 
-    const systemPrompt = `Sen "UzMarket" nomli elektron tijorat saytining sun'iy intellekt maslahatchisisan. 
-Vazifang foydalanuvchilarga mahsulotlar bo'yicha ma'lumot berish va savollariga o'zbek tilida do'stona javob qaytarishdir.
+  const systemPrompt = `Siz UzMarket onlayn do'koni uchun yordamchi AI maslahatchisiz. 
 ${cartContext}
-Javoblaringiz qisqa, tushunarli va professional bo'lsin.`;
+Iltimos, har doim do'stona, o'zbek tilida va faqat mahsulotlar, xaridlar haqida yordam bering.
+Qisqa va aniq javob qaytaring.`;
 
     const result = streamText({
       model: openai('gpt-4o-mini'),
       system: systemPrompt,
-      messages: messages as any[],
+      messages: messages as unknown[],
     });
 
     return result.toTextStreamResponse();

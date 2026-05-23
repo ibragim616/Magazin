@@ -1,3 +1,7 @@
+ 
+ 
+ 
+ 
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from 'react';
@@ -20,7 +24,13 @@ export default function AIChat() {
     }
   }), [cartItems]);
 
-  const [messages, setMessages] = useState<any[]>([]);
+interface Message {
+  id: string;
+  role: 'user' | 'assistant' | 'system' | 'data';
+  content: string;
+}
+
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
